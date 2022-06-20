@@ -142,7 +142,7 @@ filters:
   #- "* * 10.1.8.216 * * * nat 10.13.37.57"
 
   # Forward destinations (ip_address:port)
-  #- "* * * * * * forward 192.168.7.7:162"
+  - "* * * * * * forward 192.168.100.190:162"
 
   # Note: log directories *must* exist prior to use
 
@@ -153,7 +153,8 @@ filters:
   #- "v3 * * * * * log /opt/trapex/log/snmpv3.log break"
 
   # Log all traps after the filtering above
-  - "* * * * * * log /opt/trapex/log/trapex.log"
+  #- "* * * * * * log /opt/trapex/log/trapex.log"
+  - "* * * * * * log /tmp/trapex.log"
 
   # Also send traps to a CSV file. Note that this CSV format is specific to
   # a particular table structure in a Clickhouse database: see trapex.sql

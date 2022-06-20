@@ -128,6 +128,7 @@ func makeTrapLogEntry(sgt *sgTrap) string {
 	b.WriteString(fmt.Sprintf("\n\t%s\n", time.Now().Format(time.ANSIC)))
 	b.WriteString(fmt.Sprintf("\tSrc IP: %s\n", sgt.srcIP))
 	b.WriteString(fmt.Sprintf("\tAgent: %s\n", trap.AgentAddress))
+	b.WriteString(fmt.Sprintf("\tCommunity: %s\n", sgt.Community))
 	b.WriteString(fmt.Sprintf("\tTrap Type: %s\n", genTrapType))
 	b.WriteString(fmt.Sprintf("\tSpecific Type: %v\n", trap.SpecificTrap))
 	b.WriteString(fmt.Sprintf("\tEnterprise: %s\n", strings.Trim(trap.Enterprise, ".")))

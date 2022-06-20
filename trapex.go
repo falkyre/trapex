@@ -28,6 +28,7 @@ type sgTrap struct {
 	data       g.SnmpTrap
 	trapVer    g.SnmpVersion
 	srcIP      net.IP
+	Community  string
 	translated bool
 	dropped    bool
 }
@@ -122,8 +123,9 @@ func trapHandler(p *g.SnmpPacket, addr *net.UDPAddr) {
 			SpecificTrap: p.SpecificTrap,
 			Timestamp:    p.Timestamp,
 		},
-		srcIP:   addr.IP,
-		trapVer: p.Version,
+		srcIP:     addr.IP,
+		trapVer:   p.Version,
+		Community: p.Community,
 	}
 
 	// Translate to v1 if needed

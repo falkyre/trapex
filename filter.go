@@ -115,6 +115,7 @@ func (a *trapForwarder) initAction(dest string) error {
 		ExponentialTimeout: true,
 		MaxOids:            g.MaxOids,
 	}
+
 	err = a.destination.Connect()
 	if err != nil {
 		return (err)
@@ -127,6 +128,11 @@ func (a *trapForwarder) initAction(dest string) error {
 // instance.
 //
 func (a trapForwarder) processTrap(trap *sgTrap) error {
+	// Keep the community string that was received by originating trap
+	//a.destination.Community = trap.Community
+	a.destination.Community = "seanosty"
+	logger.Info().Str("Community: ", trap.Community).Msg("received community string")
+	logger.Info().Str("Community: ", a.destination.Community).Msg("changed community string")
 	_, err := a.destination.SendTrap(trap.data)
 	return err
 }
