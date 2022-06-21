@@ -130,7 +130,7 @@ func trapHandler(p *g.SnmpPacket, addr *net.UDPAddr) {
 
 	// Translate to v1 if needed
 	/*
-	 */
+        */
 	if p.Version > g.Version1 {
 		err := translateToV1(&trap)
 		if err != nil {
