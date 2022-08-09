@@ -140,6 +140,17 @@ func trapHandler(p *g.SnmpPacket, addr *net.UDPAddr) {
 		}
 	}
 
+	// Add in the IP address to main trap PDU as logstash snmptrap plugin does not handle
+	// agent address nicely and no fix is coming (issue is open and 3 years old as of 08/09/22)
+	IPpdu := g.SnmpPDU{
+		Name:  "1.3.6.1.4.1.29732.1.1",
+		Type:  g.IPAddress,
+		Value: trap.data.AgentAddress,
+	}
+
+	trap.data.Variables=append(trap.data.Variables,IPpdu)
+
+
 	if teConfig.Logging.Level == "debug" {
 		var info string
 		info = makeTrapLogEntry(&trap)

@@ -131,7 +131,7 @@ func processCommandLine() {
 	flag.Parse()
 
 	if *showVersion {
-		fmt.Printf("This is trapex version %s\n", myVersion)
+		fmt.Printf("trapex V %s\n", myVersion)
 		os.Exit(0)
 	}
 
