@@ -7,4 +7,4 @@ package main
 
 // Global const for this version of trapex
 //
-const myVersion string = "0.12.0"
+const myVersion string = "0.12.1"

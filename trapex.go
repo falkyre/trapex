@@ -147,8 +147,14 @@ func trapHandler(p *g.SnmpPacket, addr *net.UDPAddr) {
 		Type:  g.IPAddress,
 		Value: trap.data.AgentAddress,
 	}
+	// Add in the specific trap again as it can be corrupted like the agent address
+	STpdu := g.SnmpPDU{
+		Name:  "1.3.6.1.4.1.29732.1.2",
+		Type:  g.Integer,
+		Value: trap.data.SpecificTrap,
+	}
 
-	trap.data.Variables=append(trap.data.Variables,IPpdu)
+	trap.data.Variables=append(trap.data.Variables,IPpdu,STpdu)
 
 
 	if teConfig.Logging.Level == "debug" {
