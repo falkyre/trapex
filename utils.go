@@ -180,6 +180,7 @@ func makeTrapLogCsvEntry(sgt *sgTrap) string {
 	TrapNumber,
 	TrapSourceIP,
 	TrapAgentAddress,
+	TrapCommunity,
 	TrapGenericType,
 	TrapSpecificType,
 	TrapEnterpriseOID,
@@ -195,9 +196,10 @@ func makeTrapLogCsvEntry(sgt *sgTrap) string {
 	csv[3] = fmt.Sprintf("%v", stats.TrapCount)
 	csv[4] = fmt.Sprintf("\"%v\"", sgt.srcIP)
 	csv[5] = fmt.Sprintf("\"%v\"", trap.AgentAddress)
-	csv[6] = fmt.Sprintf("%v", trap.GenericTrap)
-	csv[7] = fmt.Sprintf("%v", trap.SpecificTrap)
-	csv[8] = fmt.Sprintf("\"%v\"", strings.Trim(trap.Enterprise, "."))
+	csv[6] = fmt.Sprintf("\"%v\"", sgt.Community)
+	csv[7] = fmt.Sprintf("%v", trap.GenericTrap)
+	csv[8] = fmt.Sprintf("%v", trap.SpecificTrap)
+	csv[9] = fmt.Sprintf("\"%v\"", strings.Trim(trap.Enterprise, "."))
 
 	var vbObj []string
 	var vbVal []string
