@@ -71,6 +71,7 @@ type trapexConfig struct {
 		IgnoreVersions []string        `default:"[]" yaml:"ignore_versions"`
 		ignoreVersions []g.SnmpVersion `default:"[]"`
 
+		PrometheusEnabled  string `default:"false" yaml:"prometheus_enabled"`
 		PrometheusIp       string `default:"0.0.0.0" yaml:"prometheus_ip"`
 		PrometheusPort     string `default:"80" yaml:"prometheus_port"`
 		PrometheusEndpoint string `default:"metrics" yaml:"prometheus_endpoint"`

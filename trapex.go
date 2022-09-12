@@ -13,6 +13,7 @@ import (
 	"os"
 	"path/filepath"
 	"time"
+	"strconv"
 
 	g "github.com/gosnmp/gosnmp"
 
@@ -54,10 +55,14 @@ func main() {
 	}
 
 	initSigHandlers()
-	go exposeMetrics()
-	var exporter = fmt.Sprintf("http://%s:%s/%s\n",
+	// If the prometheus is enabled in the config, then use the metrics
+	use_Prometheus,_ := strconv.ParseBool(teConfig.General.PrometheusEnabled)
+    if  use_Prometheus == true {
+	   go exposeMetrics()
+	   var exporter = fmt.Sprintf("http://%s:%s/%s\n",
 		teConfig.General.PrometheusIp, teConfig.General.PrometheusPort, teConfig.General.PrometheusEndpoint)
-	logger.Info().Str("endpoint", exporter).Msg("Prometheus metrics exported")
+	   logger.Info().Str("endpoint", exporter).Msg("Prometheus metrics exported")
+	}
 
 	stats.StartTime = time.Now()
 

@@ -27,6 +27,10 @@ func TestGeneralSection(t *testing.T) {
 		t.Errorf("Ignore versions is not set correctly: %s", testConfig.General.IgnoreVersions)
 	}
 
+	if testConfig.General.PrometheusEnabled != true {
+                t.Errorf("Prometheus Enabled is not set correctly: %t", testConfig.General.PrometheusEnabled)
+        }
+
 	if testConfig.General.PrometheusIp != "127.10.0.1" {
 		t.Errorf("Prometheus host is not set correctly: %s", testConfig.General.PrometheusIp)
 	}
